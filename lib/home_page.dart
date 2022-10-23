@@ -12,18 +12,22 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.only(top: 70, left: 20, right: 20),
-            width: double.maxFinite,
-            height: 70,
-            decoration: BoxDecoration(
-                color: Colors.amber, borderRadius: BorderRadius.circular(15)),
-            child: Center(
-              child: Text(
-                "I want to learn: ${Provider.of<Course>(context).course}",
-                style: const TextStyle(color: Colors.black, fontSize: 20),
-              ),
-            ),
+          Consumer<Course>(
+            builder: (context, provider, child ) {
+              return Container(
+                margin: const EdgeInsets.only(top: 70, left: 20, right: 20),
+                width: double.maxFinite,
+                height: 70,
+                decoration: BoxDecoration(
+                    color: Colors.amber, borderRadius: BorderRadius.circular(15)),
+                child: Center(
+                  child: Text(
+                    "I want to learn: ${provider.course}",
+                    style: const TextStyle(color: Colors.black, fontSize: 20),
+                  ),
+                ),
+              );
+            }
           ),
           const CourseWidget(course: "Flutter"),
           const CourseWidget(course: "Dart"),
